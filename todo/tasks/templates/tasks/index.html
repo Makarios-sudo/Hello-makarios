@@ -1,0 +1,57 @@
+{% extends 'tasks/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container-fluid  text-center m-3 rounded-pill">
+  
+  <div class="row">
+
+    <div class="col "> </div>
+
+    <div class="col-8 " style="background-color: lavender;">
+
+      <h2 class="text m-2"><b>My To-Do List</b></h2>
+      <hr><br>
+
+    <form method="POST" action="/" autocomplete="off">
+
+      {% csrf_token %}
+      {{form.title }} <br> <br>
+    
+      <button class="btn btn-success">Add Task</button>
+    </form>
+        
+    <hr><br>
+
+    <div class="sub " role="alert">
+
+      {% for task in tasks %}
+
+        {% if task.completed == True %}
+        <strike>{{task}}</strike>
+        <hr>
+      
+      {%  else %}
+     
+       <b> {{task | title}}</b>
+         
+        <p>
+          <a href=" {% url 'update_task' task.pk %} "><button class="btn btn-success rounded-pill">Update</button></a>
+          <a href=" {% url 'deleteTask' task.pk %} "><button class="btn btn-danger rounded-pill">Delete</button></a>
+        </p><hr>
+
+        {% endif %}
+      {% endfor %}
+        
+      </div>
+
+    </div>
+    <div class="col "></div>
+    <br>
+  </div>
+  
+  
+
+{% endblock %}
+
+

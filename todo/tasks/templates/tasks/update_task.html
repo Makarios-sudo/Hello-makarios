@@ -1,0 +1,22 @@
+{% extends 'tasks/base.html' %}
+{% block content %}
+
+<div class="container  text-center" >
+
+
+    <div class="alert alert m-5" role="alert" style="background-color: lavender;">
+
+        <h3>Update Task</h3>
+            <hr>
+
+        <form method="POST" action=" ">
+        {% csrf_token %} 
+        {{form.as_p}}
+        <button class="btn btn-success">Update</button>
+        </form> 
+        <hr>
+        <a href=" {% url 'home' %} "><button class="btn btn-danger">Go Back</button></a>
+    </div>    
+
+</div>
+{% endblock content %}
